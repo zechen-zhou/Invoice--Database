@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,0" last-zoom="0.9"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="invoice_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="660" y="360"/>
+	<column name="invoice_number" not-null="true">
+		<type name="char" length="6"/>
+	</column>
+	<column name="customer_id">
+		<type name="char" length="6"/>
+	</column>
+	<column name="date" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="company_name" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="company_phone" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="company_fax" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="company_email" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="company_address" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="company_city" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="company_province" not-null="true">
+		<type name="char" length="2"/>
+	</column>
+	<column name="company_postcode" not-null="true">
+		<type name="char" length="6"/>
+	</column>
+	<constraint name="PK_invoice_number" type="pk-constr" table="public.invoice_t">
+		<columns names="invoice_number" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="serves_terms_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="660" y="660"/>
+	<column name="invoice-number" not-null="true">
+		<type name="char" length="6"/>
+	</column>
+	<column name="item_code" not-null="true">
+		<type name="character varying" length="5"/>
+	</column>
+	<column name="salesperson" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="job" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="shipping_method" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="shipping_terms" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="delivery_date" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="payment_terms" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="duedate" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="PK_serves_terms_t" type="pk-constr" table="public.serves_terms_t">
+		<columns names="invoice-number,item_code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="invoice_line_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1160" y="380"/>
+	<column name="invoice_number" not-null="true">
+		<type name="char" length="6"/>
+	</column>
+	<column name="invoice_line" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="item_code" not-null="true">
+		<type name="character varying" length="5"/>
+	</column>
+	<column name="QTY" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="line_total" not-null="true">
+		<type name="decimal" length="5" precision="2"/>
+	</column>
+	<constraint name="PK_invoice_line_t" type="pk-constr" table="public.invoice_line_t">
+		<columns names="invoice_number,invoice_line" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="product_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1200" y="680"/>
+	<column name="item_code" not-null="true">
+		<type name="character varying" length="5"/>
+	</column>
+	<column name="description" not-null="true">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="unit_price" not-null="true">
+		<type name="decimal" length="5" precision="2"/>
+	</column>
+	<column name="discount">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_product_t" type="pk-constr" table="public.product_t">
+		<columns names="item_code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="customer_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="20" y="380"/>
+	<column name="customer_id" not-null="true">
+		<type name="char" length="6"/>
+	</column>
+	<column name="customer_name" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="customer_phone" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="customer_company" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="customer_address" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="customer_city" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="customer_province" not-null="true">
+		<type name="char" length="2"/>
+	</column>
+	<column name="customer_postcode" not-null="true">
+		<type name="char" length="6"/>
+	</column>
+	<constraint name="PK_customer_id" type="pk-constr" table="public.customer_t">
+		<columns names="customer_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="payment_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="360" y="120"/>
+	<column name="invoice_number" not-null="true">
+		<type name="char" length="6"/>
+	</column>
+	<column name="customer_id" not-null="true">
+		<type name="char" length="6"/>
+	</column>
+	<column name="total_discount">
+		<type name="decimal" length="5" precision="2"/>
+	</column>
+	<column name="substotal" not-null="true">
+		<type name="decimal" length="5" precision="2"/>
+	</column>
+	<column name="HST (13%)" not-null="true">
+		<type name="decimal" length="5" precision="2"/>
+	</column>
+	<column name="total" not-null="true">
+		<type name="decimal" length="5" precision="2"/>
+	</column>
+	<constraint name="payment_t_pk" type="pk-constr" table="public.payment_t">
+		<columns names="invoice_number,customer_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="FK_customer_id" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.customer_t" table="public.invoice_t">
+	<columns names="customer_id" ref-type="src-columns"/>
+	<columns names="customer_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_invoice_number" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.invoice_t" table="public.serves_terms_t">
+	<columns names="invoice-number" ref-type="src-columns"/>
+	<columns names="invoice_number" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK1_invoice_number" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.invoice_t" table="public.invoice_line_t">
+	<columns names="invoice_number" ref-type="src-columns"/>
+	<columns names="invoice_number" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK2_item_code" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.product_t" table="public.invoice_line_t">
+	<columns names="item_code" ref-type="src-columns"/>
+	<columns names="item_code" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK1_invoice_number" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.invoice_t" table="public.payment_t">
+	<columns names="invoice_number" ref-type="src-columns"/>
+	<columns names="invoice_number" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK2_customer_id" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.customer_t" table="public.payment_t">
+	<columns names="customer_id" ref-type="src-columns"/>
+	<columns names="customer_id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_serves_terms_t_invoice_t" type="relfk"
+	 src-table="public.serves_terms_t"
+	 dst-table="public.invoice_t" reference-fk="FK_invoice_number"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_invoice_line_t_invoice_t" type="relfk"
+	 src-table="public.invoice_line_t"
+	 dst-table="public.invoice_t" reference-fk="FK1_invoice_number"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_invoice_line_t_product_t" type="relfk"
+	 src-table="public.invoice_line_t"
+	 dst-table="public.product_t" reference-fk="FK2_item_code"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_invoice_t_payer_t" type="relfk"
+	 src-table="public.invoice_t"
+	 dst-table="public.customer_t" reference-fk="FK_customer_id"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_payment_t_invoice_t" type="relfk"
+	 src-table="public.payment_t"
+	 dst-table="public.invoice_t" reference-fk="FK1_invoice_number"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_payment_t_payer_t" type="relfk"
+	 src-table="public.payment_t"
+	 dst-table="public.customer_t" reference-fk="FK2_customer_id"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
